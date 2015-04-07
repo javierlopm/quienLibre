@@ -8,17 +8,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.util.Calendar;
 
 
 public class CambioTrimestre extends Activity implements AdapterView.OnItemSelectedListener {
 
+    int anioSeleccionado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cambio_trimestre);
 
         Spinner spinner = (Spinner) findViewById(R.id.spTrimestre);
-        spinner.setOnItemSelectedListener(this);
+
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.trimestres, android.R.layout.simple_spinner_item);
@@ -26,8 +33,23 @@ public class CambioTrimestre extends Activity implements AdapterView.OnItemSelec
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
 
-        setContentView(R.layout.activity_cambio_trimestre);
+        //Selector de anio
+        NumberPicker pickAYear = (NumberPicker) findViewById(R.id.anioActual);
+        pickAYear.setMinValue(2011);
+        pickAYear.setMaxValue(2050); //Why not?
+        pickAYear.setValue( Calendar.getInstance().get(Calendar.YEAR) );
+        pickAYear.setWrapSelectorWheel(true);
+        pickAYear.setOnValueChangedListener(
+                new NumberPicker.OnValueChangeListener() {
+                    @Override
+                    public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                        anioSeleccionado = newVal;
+                    }
+                }
+        );
+
     }
 
 
@@ -53,10 +75,19 @@ public class CambioTrimestre extends Activity implements AdapterView.OnItemSelec
         return super.onOptionsItemSelected(item);
     }*/
 
+
+
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         // An item was selected. You can retrieve the selected item using
         parent.getItemAtPosition(pos);
+
+        //Hacer caso para cada posicion y cargar en mem principal
+    }
+
+    public void actTrim(View view){
+        //Realizamos escritura sobre el archivo de trimestre
+
     }
 
     public void onNothingSelected(AdapterView<?> parent) {

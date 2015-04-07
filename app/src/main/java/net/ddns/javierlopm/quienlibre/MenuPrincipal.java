@@ -28,6 +28,8 @@ public class MenuPrincipal extends ActionBarActivity {
     //Funcion para que cada boton inicie el activity correspondiente
     public void cambTrim(View view){
         Intent intent = new Intent(this, CambioTrimestre.class);
+        startActivity(intent);
+
     }
     public void agregarPersona(View view){
 
