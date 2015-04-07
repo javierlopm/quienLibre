@@ -23,7 +23,7 @@
         android:layout_centerInParent="true"
         android:text="Buscar Disponibles"
         android:id="@+id/botDisp"
-        android:onClick="viewDisp"
+        android:onClick="verDisp"
         android:textAllCaps="false"
         />
     <Button

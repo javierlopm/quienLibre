@@ -3,4 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_cambio_trimestre">CambioTrimestre</string>
+    <string-array name="trimestres">
+        <item>Enero-Marzo</item>
+        <item>Abril-Julio</item>
+        <item>Intensivo</item>
+        <item>Septiembre-Diciembre</item>
+    </string-array>
 </resources>

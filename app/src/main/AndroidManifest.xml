@@ -10,8 +10,21 @@
         <activity
             android:name=".MenuPrincipal"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CambioTrimestre"
+            android:label="@string/title_activity_cambio_trimestre"
+            android:parentActivityName=".MenuPrincipal" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.ddns.javierlopm.quienlibre.MenuPrincipal" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
