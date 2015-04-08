@@ -75,8 +75,8 @@ public class CambioTrimestre extends Activity implements AdapterView.OnItemSelec
             trimestreActual.createNewFile();
             FileWriter     fw = new FileWriter(trimestreActual.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(anioSeleccionado);
-            bw.write("\n");
+            bw.write(String.valueOf(anioSeleccionado));
+            bw.write(" ");
             bw.write(spinner.getSelectedItem().toString());
             bw.close();
 
@@ -102,6 +102,7 @@ public class CambioTrimestre extends Activity implements AdapterView.OnItemSelec
     {
         if ((keyCode == KeyEvent.KEYCODE_BACK))
         {
+            setResult(RESULT_OK);
             finish();
         }
         return super.onKeyDown(keyCode, event);

@@ -26,21 +26,35 @@ public class MenuPrincipal extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
 
-        archivoTrimestre = new File(getApplicationContext().getFilesDir(),"trimestreActual");
+
         //archivoTrimestre.delete(); //Util en caso de reinicio en formato del archivo
+        actualizarVariables();
+
+    }
+
+    public void actualizarVariables(){
+        archivoTrimestre = new File(getApplicationContext().getFilesDir(),"trimestreActual");
+        //archivoTrimestre.delete();
         trimestreSeleccionado = archivoTrimestre.exists();
-        
+
+        String buffer;
+        String[] tokens;
+
         if(trimestreSeleccionado){
             try {
                 Scanner lector = new Scanner(archivoTrimestre);
-                anio = lector.nextInt();
-                trimestre = lector.nextLine();
+                buffer = lector.nextLine();
+
+                tokens = buffer.split(" ");
+
+                anio = Integer.parseInt(tokens[0]);
+                trimestre = tokens[1];
+
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
 
         }
-
     }
 
     /*
@@ -50,6 +64,13 @@ public class MenuPrincipal extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_menu_principal, menu);
         return true;
     }*/
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        actualizarVariables();
+    }
+
 
     public void vamosSeleciona(){
         Toast toast = Toast.makeText(
