@@ -3,6 +3,7 @@ package net.ddns.javierlopm.quienlibre;
 import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,20 +12,27 @@ import android.widget.ArrayAdapter;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.Calendar;
 
 
 public class CambioTrimestre extends Activity implements AdapterView.OnItemSelectedListener {
 
     int anioSeleccionado;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cambio_trimestre);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spTrimestre);
+        spinner = (Spinner) findViewById(R.id.spTrimestre);
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -36,6 +44,8 @@ public class CambioTrimestre extends Activity implements AdapterView.OnItemSelec
         spinner.setOnItemSelectedListener(this);
 
         //Selector de anio
+        anioSeleccionado = Calendar.getInstance().get(Calendar.YEAR);
+
         NumberPicker pickAYear = (NumberPicker) findViewById(R.id.anioActual);
         pickAYear.setMinValue(2011);
         pickAYear.setMaxValue(2050); //Why not?
@@ -50,8 +60,34 @@ public class CambioTrimestre extends Activity implements AdapterView.OnItemSelec
                 }
         );
 
+
+
     }
 
+    public void actTrim(View view){
+        File trimestreActual = new File(getApplicationContext().getFilesDir(),"trimestreActual");
+
+        if(trimestreActual.exists()){
+            trimestreActual.delete();
+        }
+
+        try {
+            trimestreActual.createNewFile();
+            FileWriter     fw = new FileWriter(trimestreActual.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(anioSeleccionado);
+            bw.write("\n");
+            bw.write(spinner.getSelectedItem().toString());
+            bw.close();
+
+            Toast toast = Toast.makeText(getApplicationContext(), "Se guardo marico!", Toast.LENGTH_SHORT);
+            toast.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,35 +95,23 @@ public class CambioTrimestre extends Activity implements AdapterView.OnItemSelec
         getMenuInflater().inflate(R.menu.menu_cambio_trimestre, menu);
         return true;
     }
-    /*
+
+    //Terminamos la actividad al regresar para que MenuPrincipal pueda verificar modificaciones
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            finish();
         }
-
-        return super.onOptionsItemSelected(item);
-    }*/
+        return super.onKeyDown(keyCode, event);
+    }
 
 
 
     public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
-        parent.getItemAtPosition(pos);
-
-        //Hacer caso para cada posicion y cargar en mem principal
-    }
-
-    public void actTrim(View view){
-        //Realizamos escritura sobre el archivo de trimestre
-
+              int pos, long id) {
+        int hue = 42;
     }
 
     public void onNothingSelected(AdapterView<?> parent) {

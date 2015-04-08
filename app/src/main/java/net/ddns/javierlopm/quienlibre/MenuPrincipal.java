@@ -7,14 +7,40 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 
 public class MenuPrincipal extends ActionBarActivity {
+
+    Boolean trimestreSeleccionado = false;
+    File archivoTrimestre;
+    String trimestre;
+    int anio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+
+        archivoTrimestre = new File(getApplicationContext().getFilesDir(),"trimestreActual");
+        //archivoTrimestre.delete(); //Util en caso de reinicio en formato del archivo
+        trimestreSeleccionado = archivoTrimestre.exists();
+        
+        if(trimestreSeleccionado){
+            try {
+                Scanner lector = new Scanner(archivoTrimestre);
+                anio = lector.nextInt();
+                trimestre = lector.nextLine();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 
     /*
@@ -25,6 +51,14 @@ public class MenuPrincipal extends ActionBarActivity {
         return true;
     }*/
 
+    public void vamosSeleciona(){
+        Toast toast = Toast.makeText(
+                getApplicationContext(),
+                "Parece que no has seleccionado un trimestre! Qué esperas?",
+                Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
     //Funcion para que cada boton inicie el activity correspondiente
     public void cambTrim(View view){
         Intent intent = new Intent(this, CambioTrimestre.class);
@@ -32,11 +66,25 @@ public class MenuPrincipal extends ActionBarActivity {
 
     }
     public void agregarPersona(View view){
-
+        if (trimestreSeleccionado){
+            Toast toast = Toast.makeText(
+                    getApplicationContext(),
+                    trimestre,
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        else{
+            vamosSeleciona();
+        }
 
     }
     public void verDisp(View view){
+        if (trimestreSeleccionado){
 
+        }
+        else{
+            vamosSeleciona();
+        }
     }
 
     @Override
