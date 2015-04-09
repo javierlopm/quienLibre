@@ -6,7 +6,42 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="net.ddns.javierlopm.quienlibre.AdicionHorario">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spPersona"
+        android:layout_marginLeft="20dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#0288D1"
+        android:backgroundTintMode="multiply"
+
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Nombre de la persona"
+        android:id="@+id/ponNombre"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:visibility="invisible"
+        android:clickable="true"
+        android:onClick="borrarTexto"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nombrePersona"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="90dp"
+        android:layout_centerHorizontal="true"
+        android:text="Iniciar horario"
+        android:onClick="mostrarTabla"
+
+        />
 
 </RelativeLayout>

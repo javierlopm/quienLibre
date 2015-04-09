@@ -13,18 +13,20 @@ public class ModeloHorario extends SQLiteOpenHelper {
     public static final int COLUMNA_NOMBRE    = 3;
     public static final int COLUMNA_HORA      = 4;
 
+
     String stringCrear = "CREATE TABLE " +
             "horarios( "    +
             "trimestre VARCHAR(22), "  +
             "anio NUMERIC, "           +
             "nombre VARCHAR(255), "    +
+            "dia VARCHAR(10), "        +
             "hora NUMERIC, "           +
             "PRIMARY KEY(trimestre,anio,nombre,hora));";
 
     String stringBorralo = "DROP TABLE horarios;";
 
     ModeloHorario(Context context){
-        super(context,"quienlibre",null,2);
+        super(context,"quienlibre",null,3);
     }
 
     public void onCreate(SQLiteDatabase db){

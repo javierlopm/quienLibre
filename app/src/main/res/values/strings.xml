@@ -10,6 +10,18 @@
         <item>Intensivo</item>
         <item>Septiembre-Diciembre</item>
     </string-array>
+    <string-array name="persona">
+        <item>Mi horario</item>
+        <item>Otro</item>
+    </string-array>
+    <string-array name="diasSemanas">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miercoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+    </string-array>
     <string name="title_activity_adicion_horario">AdicionHorario</string>
     <string name="title_activity_visualizar_quien_libre">VisualizarQuienLibre</string>
+    <string name="title_activity_agregar_tabla_horario">AgregarTablaHorario</string>
 </resources>

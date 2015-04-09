@@ -1,5 +1,6 @@
 package net.ddns.javierlopm.quienlibre;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,7 +17,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
-public class MenuPrincipal extends ActionBarActivity {
+public class MenuPrincipal extends Activity {
 
     Boolean trimestreSeleccionado = false;
     Boolean tengoHorario          = false;
