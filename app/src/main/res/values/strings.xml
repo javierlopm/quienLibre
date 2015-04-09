@@ -10,4 +10,6 @@
         <item>Intensivo</item>
         <item>Septiembre-Diciembre</item>
     </string-array>
+    <string name="title_activity_adicion_horario">AdicionHorario</string>
+    <string name="title_activity_visualizar_quien_libre">VisualizarQuienLibre</string>
 </resources>

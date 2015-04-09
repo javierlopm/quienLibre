@@ -1,6 +1,8 @@
 package net.ddns.javierlopm.quienlibre;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,18 +19,21 @@ import java.util.Scanner;
 public class MenuPrincipal extends ActionBarActivity {
 
     Boolean trimestreSeleccionado = false;
+    Boolean tengoHorario          = false;
+    Boolean tengoAmigos           = false; // Forever alone var
     File archivoTrimestre;
     String trimestre;
     int anio;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
 
-
         //archivoTrimestre.delete(); //Util en caso de reinicio en formato del archivo
         actualizarVariables();
+
 
     }
 
@@ -42,19 +47,48 @@ public class MenuPrincipal extends ActionBarActivity {
 
         if(trimestreSeleccionado){
             try {
+                //Lectura y tokenize
                 Scanner lector = new Scanner(archivoTrimestre);
                 buffer = lector.nextLine();
-
                 tokens = buffer.split(" ");
 
+                //Actualizacion de variables
                 anio = Integer.parseInt(tokens[0]);
                 trimestre = tokens[1];
+
+                //Consulta para ver si tengo amigos :D y un horario
+                ModeloHorario modeloHorario = new ModeloHorario(this);
+                SQLiteDatabase db = modeloHorario.getReadableDatabase();
+
+                String[] argumentos = new String[2];
+                argumentos[0] = trimestre;
+                argumentos[1] = Integer.toString(anio);
+
+                //Consulta de mis horas este trimestre
+                Cursor miHorario = db.rawQuery(
+                        "SELECT * FROM horarios WHERE trimestre=? AND anio=? AND nombre='me'",
+                        argumentos);
+                tengoHorario = miHorario.getCount () > 0;
+
+                //Consulta de las horas de mis amigos
+                Cursor misAmigos = db.rawQuery(
+                        "SELECT * FROM horarios WHERE trimestre=? AND anio=? AND nombre!='me'",
+                        argumentos);
+                tengoAmigos = misAmigos.getCount() > 0;
+
+                miHorario.close();
+                misAmigos.close();
+
+
+
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
 
         }
+
+
     }
 
     /*
@@ -72,10 +106,10 @@ public class MenuPrincipal extends ActionBarActivity {
     }
 
 
-    public void vamosSeleciona(){
+    public void enviarMensaje(String mensaje){
         Toast toast = Toast.makeText(
                 getApplicationContext(),
-                "Parece que no has seleccionado un trimestre! Qué esperas?",
+                mensaje,
                 Toast.LENGTH_SHORT);
         toast.show();
     }
@@ -87,27 +121,32 @@ public class MenuPrincipal extends ActionBarActivity {
 
     }
     public void agregarPersona(View view){
-        if (trimestreSeleccionado){
-            Toast toast = Toast.makeText(
-                    getApplicationContext(),
-                    trimestre,
-                    Toast.LENGTH_SHORT);
-            toast.show();
-        }
-        else{
-            vamosSeleciona();
-        }
-
+        Intent intent = new Intent(this, AdicionHorario.class);
+        startActivity(intent);
     }
     public void verDisp(View view){
-        if (trimestreSeleccionado){
+        if (trimestreSeleccionado && tengoHorario && tengoAmigos){
+            //Si to_do marcha bien mostrar horario con disponibilidad de amigos
+            Intent intent = new Intent(this, VisualizarQuienLibre.class);
+            startActivity(intent);
 
         }
-        else{
-            vamosSeleciona();
+        else if(!trimestreSeleccionado){
+            enviarMensaje("Parece que no has seleccionado un trimestre! Qué esperas?");
         }
+        else if(trimestreSeleccionado && !tengoHorario){
+            enviarMensaje("Parece que has olvidado agrega tu horario este trimestre");
+        }
+        else if(trimestreSeleccionado && tengoHorario && !tengoAmigos){
+            enviarMensaje("Parece que no tienes el horario de nadie mas este trimestre :(");
+        }
+        else {
+            enviarMensaje("Sinceramente no se que hago aqui");
+        }
+
     }
 
+    /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -122,4 +161,5 @@ public class MenuPrincipal extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    */
 }

@@ -20,8 +20,8 @@
         <activity
             android:name=".CambioTrimestre"
             android:label="@string/title_activity_cambio_trimestre"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MenuPrincipal" >
+            android:parentActivityName=".MenuPrincipal"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="net.ddns.javierlopm.quienlibre.MenuPrincipal" />
@@ -31,6 +31,19 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".AdicionHorario"
+            android:label="@string/title_activity_adicion_horario"
+            android:parentActivityName=".MenuPrincipal" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.ddns.javierlopm.quienlibre.MenuPrincipal" />
+        </activity>
+        <activity
+            android:name=".VisualizarQuienLibre"
+            android:parentActivityName=".MenuPrincipal"
+            android:label="@string/title_activity_visualizar_quien_libre" >
         </activity>
     </application>
 
