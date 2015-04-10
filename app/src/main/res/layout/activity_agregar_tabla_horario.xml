@@ -87,7 +87,7 @@
             android:layout_below="@+id/linearLayout1" >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView9"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -101,8 +101,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:gravity="center"
+                android:scaleType="fitXY"
                 />
+
             <Button
                 android:id="@+id/button01"
                 android:layout_width="0dp"
@@ -142,7 +143,7 @@
             android:layout_below="@+id/linearLayout2" >
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textView10"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -197,7 +198,7 @@
             android:layout_below="@+id/linearLayout3" >
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textView11"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -252,7 +253,7 @@
             android:layout_below="@+id/linearLayout4" >
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textView12"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -299,6 +300,7 @@
         </LinearLayout>
 
     </RelativeLayout>
+
 
 
 
