@@ -29,23 +29,27 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/botDisp"
         android:text="Agregar persona"
         android:id="@+id/botPer"
         android:onClick="agregarPersona"
         android:textAllCaps="false"
-        />
+        android:layout_alignRight="@+id/botDisp"
+        android:layout_alignEnd="@+id/botDisp"
+        android:layout_alignLeft="@+id/botDisp"
+        android:layout_alignStart="@+id/botDisp" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/botPer"
         android:text="Cambiar Trimestre"
         android:id="@+id/botCam"
         android:onClick="cambTrim"
         android:textAllCaps="false"
-        />
+        android:layout_alignLeft="@+id/botPer"
+        android:layout_alignStart="@+id/botPer"
+        android:layout_alignRight="@+id/botPer"
+        android:layout_alignEnd="@+id/botPer" />
 
 
 </RelativeLayout>
