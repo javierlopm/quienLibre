@@ -65,41 +65,39 @@ public class MenuPrincipal extends Activity {
                 String[] argumentos = new String[3];
                 argumentos[0] = trimestre;
                 argumentos[1] = Integer.toString(anio);
-
-                String[] arg = new String[1];
-                arg[0] = "me";
+                argumentos[2] = "me";
 
                 tengoAmigos = DatabaseUtils.longForQuery(
                                     db,
-                                    "SELECT COUNT(*) FROM horarios WHERE nombre!=?",
-                                    arg) > 0L;
+                                    "SELECT COUNT(*) " +
+                                            "FROM horarios " +
+                                                "WHERE trimestre=? AND " +
+                                                "anio=? AND " +
+                                                "nombre!=?",
+                                    argumentos) > 0L;
 
                 tengoHorario = DatabaseUtils.longForQuery(
                                     db,
-                                    "SELECT COUNT(*) FROM horarios WHERE nombre=?",
-                                    arg) > 0L;
+                                    "SELECT COUNT(*) " +
+                                            "FROM horarios " +
+                                            "WHERE trimestre=? AND " +
+                                            "anio=? AND " +
+                                            "nombre=?",
+                                    argumentos) > 0L;
 
                 db.close();
-
-
-
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-
+        } else {
+            tengoAmigos  = false;
+            tengoHorario = false;
         }
 
 
     }
 
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_menu_principal, menu);
-        return true;
-    }*/
 
     @Override
     public void onResume(){
