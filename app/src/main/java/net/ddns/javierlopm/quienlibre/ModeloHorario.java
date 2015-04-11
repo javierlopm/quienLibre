@@ -27,7 +27,7 @@ public class ModeloHorario extends SQLiteOpenHelper {
     String stringBorralo = "DROP TABLE horarios;";
 
     ModeloHorario(Context context){
-        super(context,"quienlibre",null,4);
+        super(context,"quienlibre",null,6);
     }
 
     public void onCreate(SQLiteDatabase db){
@@ -46,7 +46,6 @@ public class ModeloHorario extends SQLiteOpenHelper {
         cv.put("nombre",nombre);
         cv.put("dia",dia);
         cv.put("hora",hora);
-
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert("horarios",null,cv);
         db.close();

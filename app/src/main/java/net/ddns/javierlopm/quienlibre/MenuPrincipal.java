@@ -3,9 +3,11 @@ package net.ddns.javierlopm.quienlibre;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,24 +62,23 @@ public class MenuPrincipal extends Activity {
                 ModeloHorario modeloHorario = new ModeloHorario(this);
                 SQLiteDatabase db = modeloHorario.getReadableDatabase();
 
-                String[] argumentos = new String[2];
+                String[] argumentos = new String[3];
                 argumentos[0] = trimestre;
                 argumentos[1] = Integer.toString(anio);
 
-                //Consulta de mis horas este trimestre
-                Cursor miHorario = db.rawQuery(
-                        "SELECT * FROM horarios WHERE trimestre=? AND anio=? AND nombre='me'",
-                        argumentos);
-                tengoHorario = miHorario.getCount () > 0;
+                String[] arg = new String[1];
+                arg[0] = "me";
 
-                //Consulta de las horas de mis amigos
-                Cursor misAmigos = db.rawQuery(
-                        "SELECT * FROM horarios WHERE trimestre=? AND anio=? AND nombre!='me'",
-                        argumentos);
-                tengoAmigos = misAmigos.getCount() > 0;
+                tengoAmigos = DatabaseUtils.longForQuery(
+                                    db,
+                                    "SELECT COUNT(*) FROM horarios WHERE nombre!=?",
+                                    arg) > 0L;
 
-                miHorario.close();
-                misAmigos.close();
+                tengoHorario = DatabaseUtils.longForQuery(
+                                    db,
+                                    "SELECT COUNT(*) FROM horarios WHERE nombre=?",
+                                    arg) > 0L;
+
                 db.close();
 
 
@@ -126,6 +127,7 @@ public class MenuPrincipal extends Activity {
         startActivity(intent);
     }
     public void verDisp(View view){
+        actualizarVariables();
         if (trimestreSeleccionado && tengoHorario && tengoAmigos){
             //Si to_do marcha bien mostrar horario con disponibilidad de amigos
             Intent intent = new Intent(this, VisualizarQuienLibre.class);

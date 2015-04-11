@@ -3,6 +3,7 @@ package net.ddns.javierlopm.quienlibre;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-
+//todo definir que hacer cuando se presiona enter al cambiar nombre
 public class AdicionHorario extends ActionBarActivity implements AdapterView.OnItemSelectedListener {
 
     String nombre;
@@ -67,13 +68,18 @@ public class AdicionHorario extends ActionBarActivity implements AdapterView.OnI
     public void mostrarTabla(View view){
 
         if (posicionFinal == 0)nombre = "me";
-        else {
+        else if(posicionFinal == 1) {
             TextView editarNombre = (TextView) findViewById(R.id.ponNombre);
             nombre = editarNombre.getText().toString();
+        }
+        else{
+            nombre = "me";
         }
 
         Intent intent = new Intent(this, AgregarTablaHorario.class);
         intent.putExtra("nombre",nombre);
+
+
         startActivity(intent);
     }
 

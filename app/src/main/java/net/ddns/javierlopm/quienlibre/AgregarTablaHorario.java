@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -34,8 +35,11 @@ public class AgregarTablaHorario extends Activity {
         setContentView(R.layout.activity_agregar_tabla_horario);
 
         /*Variables necesarias para la escritura en la base de datos*/
-        Intent in = new Intent(this,AdicionHorario.class);
-        in.putExtra("nombre",nombre);
+        Intent in = getIntent();
+
+        nombre = in.getStringExtra("nombre");
+
+
         archivoTrimestre = new File(getApplicationContext().getFilesDir(),"trimestreActual");
         try{
             Scanner lector = new Scanner(archivoTrimestre);
@@ -79,9 +83,10 @@ public class AgregarTablaHorario extends Activity {
         for (int i=0;i<4;i++) {
             for (int j = 0; j < 5; j++) {
                 for (int k = 0; k <= 1; k++) {
-                    if(!ocupado[i][j][k]){
+                    if(ocupado[i][j][k]){
                         //Fila y posicion(arriba abajo) definen la hora
                         db.agregarClase(trimestre,anio,nombre,intADia(j),(i*2) + 1 +k);
+
                     }
                 }
             }
