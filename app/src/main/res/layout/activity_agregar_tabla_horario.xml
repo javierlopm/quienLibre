@@ -6,13 +6,182 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="net.ddns.javierlopm.quienlibre.AgregarTablaHorario">
 
+    <!-- Inicio de Columna Lunes -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Lunes"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignRight="@+id/but00a"
+        android:layout_alignEnd="@+id/but00a"
+        android:layout_marginRight="30dp"/>
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignLeft="@+id/but20a"
+        android:layout_above="@+id/but10a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but00a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/botnotselected"
+        android:layout_alignLeft="@+id/but20a"
+        android:layout_above="@+id/but10a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but00b"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignLeft="@+id/but20a"
+        android:layout_above="@+id/but20a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but10a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/botnotselected"
+        android:layout_alignLeft="@+id/but20a"
+        android:layout_above="@+id/but20a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but10b"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignTop="@+id/but21a"
+        android:layout_toLeftOf="@+id/but21a"
+        android:layout_marginRight="3dp"
+        android:id="@+id/but20a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:layout_alignLeft="@+id/but20a"
+        android:layout_alignTop="@+id/but20a"
+        android:background="@drawable/botnotselected"
+        android:id="@+id/but20b"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignLeft="@id/but20a"
+        android:layout_below="@+id/but20a"
+        android:layout_marginTop="3dp"
+        android:id="@+id/but30a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/botnotselected"
+        android:layout_alignLeft="@id/but20a"
+        android:layout_below="@+id/but20a"
+        android:layout_marginTop="3dp"
+        android:id="@+id/but30b"
+        />
+<!-- Fin de Columna Lunes -->
 
+<!-- Inicio de Columna Martes -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Martes"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignRight="@+id/but01a"
+        android:layout_alignEnd="@+id/but01a"
+        android:layout_marginRight="30dp"/>
+
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignLeft="@+id/but21a"
+        android:layout_above="@+id/but11a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but01a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/botnotselected"
+        android:layout_alignLeft="@+id/but21a"
+        android:layout_above="@+id/but11a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but01b"
+        />
+
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignLeft="@+id/but21a"
+        android:layout_above="@+id/but21a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but11a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/botnotselected"
+        android:layout_alignLeft="@+id/but21a"
+        android:layout_above="@+id/but21a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but11b"
+        />
+
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignTop="@+id/but22a"
+        android:layout_toLeftOf="@+id/but22a"
+        android:layout_marginRight="3dp"
+        android:id="@+id/but21a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:layout_alignLeft="@+id/but21a"
+        android:layout_alignTop="@+id/but21a"
+        android:background="@drawable/botnotselected"
+        android:id="@+id/but21b"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignLeft="@id/but21a"
+        android:layout_below="@+id/but21a"
+        android:layout_marginTop="3dp"
+        android:id="@+id/but31a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/botnotselected"
+        android:layout_alignLeft="@id/but21a"
+        android:layout_below="@+id/but21a"
+        android:layout_marginTop="3dp"
+        android:id="@+id/but31b"
+        />
+<!-- Fin de Columna Martes -->
+
+<!-- Inicio de Columna Central -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Miércoles"
-        />
+        android:id="@+id/textView" />
 
     <Button
         android:layout_width="200px"
@@ -86,6 +255,228 @@
         android:layout_marginTop="3dp"
         android:id="@+id/but32b"
         />
+<!-- Fin de Columna Central -->
 
+<!-- Inicio de Columna Jueves -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Jueves"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignRight="@+id/but03a"
+        android:layout_alignEnd="@+id/but03a"
+        android:layout_marginRight="30dp"/>
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignLeft="@+id/but23a"
+        android:layout_above="@+id/but13a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but03a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/botnotselected"
+        android:layout_alignLeft="@+id/but23a"
+        android:layout_above="@+id/but13a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but03b"
+        />
+
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignLeft="@+id/but23a"
+        android:layout_above="@+id/but23a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but13a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/botnotselected"
+        android:layout_alignLeft="@+id/but23a"
+        android:layout_above="@+id/but23a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but13b"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignTop="@+id/but22a"
+        android:layout_toRightOf="@+id/but22a"
+        android:layout_marginRight="3dp"
+        android:layout_marginLeft="3dp"
+        android:id="@+id/but23a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:layout_alignLeft="@+id/but23a"
+        android:layout_alignTop="@+id/but23a"
+        android:background="@drawable/botnotselected"
+        android:id="@+id/but23b"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignLeft="@id/but23a"
+        android:layout_below="@+id/but23a"
+        android:layout_marginTop="3dp"
+        android:id="@+id/but33a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/botnotselected"
+        android:layout_alignLeft="@id/but23a"
+        android:layout_below="@+id/but23a"
+        android:layout_marginTop="3dp"
+        android:id="@+id/but33b"
+        />
+<!-- Fin de Columna Jueves -->
+
+    <!-- Inicio de Columna Viernes -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Viernes"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignRight="@+id/but04a"
+        android:layout_alignEnd="@+id/but04a"
+        android:layout_marginRight="30dp"/>
+
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignLeft="@+id/but24a"
+        android:layout_above="@+id/but14a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but04a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/botnotselected"
+        android:layout_alignLeft="@+id/but24a"
+        android:layout_above="@+id/but14a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but04b"
+        />
+
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignLeft="@+id/but24a"
+        android:layout_above="@+id/but24a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but14a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/botnotselected"
+        android:layout_alignLeft="@+id/but24a"
+        android:layout_above="@+id/but24a"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/but14b"
+        />
+
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignTop="@+id/but23a"
+        android:layout_toRightOf="@+id/but23a"
+        android:layout_marginRight="3dp"
+        android:id="@+id/but24a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:layout_alignLeft="@+id/but24a"
+        android:layout_alignTop="@+id/but24a"
+        android:background="@drawable/botnotselected"
+        android:id="@+id/but24b"
+        />
+
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/supnotselected"
+        android:layout_alignLeft="@id/but24a"
+        android:layout_below="@+id/but24a"
+        android:layout_marginTop="3dp"
+        android:id="@+id/but34a"
+        />
+    <Button
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:background="@drawable/botnotselected"
+        android:layout_alignLeft="@id/but24a"
+        android:layout_below="@+id/but24a"
+        android:layout_marginTop="3dp"
+        android:id="@+id/but34b"
+        />
+    <!-- Fin de Columna Viernes -->
+
+<!-- Horarios -->
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="1-2"
+    android:layout_alignBottom="@+id/but00a"
+    android:layout_marginBottom="40px"
+    android:layout_toLeftOf="@+id/but00a"
+    android:layout_marginRight="10px"
+    />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3-4"
+        android:layout_alignBottom="@+id/but10a"
+        android:layout_marginBottom="40px"
+        android:layout_toLeftOf="@+id/but00a"
+        android:layout_marginRight="10px"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5-6"
+        android:layout_alignBottom="@+id/but20a"
+        android:layout_marginBottom="40px"
+        android:layout_toLeftOf="@+id/but00a"
+        android:layout_marginRight="10px"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7-8"
+        android:layout_alignBottom="@+id/but30a"
+        android:layout_marginBottom="40px"
+        android:layout_toLeftOf="@+id/but00a"
+        android:layout_marginRight="10px"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/but32a"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="agregarHorario"
+        android:onClick="insertarEnDb"
+        android:id="@+id/send"
+        />
 
 </RelativeLayout>

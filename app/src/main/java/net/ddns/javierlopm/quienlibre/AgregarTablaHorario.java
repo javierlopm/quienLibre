@@ -1,6 +1,9 @@
 package net.ddns.javierlopm.quienlibre;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -8,16 +11,41 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 
 public class AgregarTablaHorario extends Activity {
 
     Boolean [][][] ocupado;
     int [][][] idBotones;
+    String nombre;
+    File archivoTrimestre;
+    String trimestre;
+    int anio;
+    String buffer;
+    String[] tokens;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_tabla_horario);
+
+        /*Variables necesarias para la escritura en la base de datos*/
+        Intent in = new Intent(this,AdicionHorario.class);
+        in.putExtra("nombre",nombre);
+        archivoTrimestre = new File(getApplicationContext().getFilesDir(),"trimestreActual");
+        try{
+            Scanner lector = new Scanner(archivoTrimestre);
+            buffer = lector.nextLine();
+            tokens = buffer.split(" ");
+            anio = Integer.parseInt(tokens[0]);
+            trimestre = tokens[1];
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         ocupado = new Boolean[4][5][2];
         for (int i=0;i<4;i++) for (int j=0;j<5;j++) for (int k=0;k<=1;k++) ocupado[i][j][k] = false;
@@ -26,17 +54,110 @@ public class AgregarTablaHorario extends Activity {
         inicializarBotones(idBotones);
 
         for(int i = 0; i<4 ; i++){
-            for(int j=0; j<2;j++){
-                //Extraido de
-                //http://stackoverflow.com/questions/19789964/how-to-get-clicks-on-two-overlapping-button-in-same-frame-layout-in-android
-                EscucharBoton eb = new EscucharBoton(i,2,j);
-                findViewById(idBotones[i][2][j]).setOnTouchListener(eb);
+            for(int j=0; j<5;j++){
+                for(int k=0;k<2;k++) {
+                    EscucharBoton eb = new EscucharBoton(i, j, k);
+                    findViewById(idBotones[i][j][k]).setOnTouchListener(eb);
+                }
             }
 
 
         }
 
 
+    }
+
+    public void insertarEnDb(View view){
+        Toast toast = Toast.makeText(
+                getApplicationContext(),
+                "Horario de " + nombre + "agregado",
+                Toast.LENGTH_SHORT);
+        toast.show();
+
+        ModeloHorario db = new ModeloHorario(this);
+
+        for (int i=0;i<4;i++) {
+            for (int j = 0; j < 5; j++) {
+                for (int k = 0; k <= 1; k++) {
+                    if(!ocupado[i][j][k]){
+                        //Fila y posicion(arriba abajo) definen la hora
+                        db.agregarClase(trimestre,anio,nombre,intADia(j),(i*2) + 1 +k);
+                    }
+                }
+            }
+        }
+        db.close();
+
+
+        Intent intent = new Intent(this, MenuPrincipal.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    public String intADia(int a){
+        String dia;
+        switch (a) {
+            case 0:  dia = "Lunes";
+                break;
+            case 1:  dia = "Martes";
+                break;
+            case 2:  dia = "Miércoles";
+                break;
+            case 3:  dia = "Jueves";
+                break;
+            case 4:  dia = "Viernes";
+                break;
+            default: dia = "invalido";
+                break;
+        }
+
+        return  dia;
+    }
+
+    public void inicializarBotones(int a[][][]){
+        a[0][0][0] = R.id.but00a;
+        a[0][0][1] = R.id.but00b;
+        a[0][1][0] = R.id.but01a;
+        a[0][1][1] = R.id.but01b;
+        a[0][2][0] = R.id.but02a;
+        a[0][2][1] = R.id.but02b;
+        a[0][3][0] = R.id.but03a;
+        a[0][3][1] = R.id.but03b;
+        a[0][4][0] = R.id.but04a;
+        a[0][4][1] = R.id.but04b;
+
+        a[1][0][0] = R.id.but10a;
+        a[1][0][1] = R.id.but10b;
+        a[1][1][0] = R.id.but11a;
+        a[1][1][1] = R.id.but11b;
+        a[1][2][0] = R.id.but12a;
+        a[1][2][1] = R.id.but12b;
+        a[1][3][0] = R.id.but13a;
+        a[1][3][1] = R.id.but13b;
+        a[1][4][0] = R.id.but14a;
+        a[1][4][1] = R.id.but14b;
+
+        a[2][0][0] = R.id.but20a;
+        a[2][0][1] = R.id.but20b;
+        a[2][1][0] = R.id.but21a;
+        a[2][1][1] = R.id.but21b;
+        a[2][2][0] = R.id.but22a;
+        a[2][2][1] = R.id.but22b;
+        a[2][3][0] = R.id.but23a;
+        a[2][3][1] = R.id.but23b;
+        a[2][4][0] = R.id.but24a;
+        a[2][4][1] = R.id.but24b;
+
+        a[3][0][0] = R.id.but30a;
+        a[3][0][1] = R.id.but30b;
+        a[3][1][0] = R.id.but31a;
+        a[3][1][1] = R.id.but31b;
+        a[3][2][0] = R.id.but32a;
+        a[3][2][1] = R.id.but32b;
+        a[3][3][0] = R.id.but33a;
+        a[3][3][1] = R.id.but33b;
+        a[3][4][0] = R.id.but34a;
+        a[3][4][1] = R.id.but34b;
     }
 
     public class EscucharBoton implements View.OnTouchListener  {
@@ -51,6 +172,8 @@ public class AgregarTablaHorario extends Activity {
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
+            //Extraido de
+            //http://stackoverflow.com/questions/19789964/how-to-get-clicks-on-two-overlapping-button-in-same-frame-layout-in-android
             int altura = findViewById(idBotones[i][j][k]).getWidth();
             int ancho  = findViewById(idBotones[i][j][k]).getWidth();
             float puntoX = event.getX();
@@ -95,43 +218,8 @@ public class AgregarTablaHorario extends Activity {
         }
     }
 
-    public void enviarMensaje(String mensaje){
-        Toast toast = Toast.makeText(
-                getApplicationContext(),
-                mensaje,
-                Toast.LENGTH_SHORT);
-        toast.show();
-    }
 
-    public void inicializarBotones(int a[][][]){
-//        a[0][0] = R.id.but00;
-//        a[0][1] = R.id.but01;
-        a[0][2][0] = R.id.but02a;
-        a[0][2][1] = R.id.but02b;
-//        a[0][3] = R.id.but03;
-//        a[0][4] = R.id.but04;
 
-//        a[1][0] = R.id.but10;
-//        a[1][1] = R.id.but11;
-        a[1][2][0] = R.id.but12a;
-        a[1][2][1] = R.id.but12b;
-//        a[1][3] = R.id.but13;
-//        a[1][4] = R.id.but14;
-
-//        a[2][0] = R.id.but20;
-//        a[2][1] = R.id.but21;
-        a[2][2][0] = R.id.but22a;
-        a[2][2][1] = R.id.but22b;
-//        a[2][3] = R.id.but23;
-//        a[2][4] = R.id.but24;
-
-//        a[3][0] = R.id.but30;
-//        a[3][1] = R.id.but31;
-        a[3][2][0] = R.id.but32a;
-        a[3][2][1] = R.id.but32b;
-//        a[3][3] = R.id.but33;
-//        a[3][4] = R.id.but34;
-    }
 
 
 }

@@ -35,7 +35,6 @@ public class MenuPrincipal extends Activity {
         //archivoTrimestre.delete(); //Util en caso de reinicio en formato del archivo
         actualizarVariables();
 
-
     }
 
     public void actualizarVariables(){
@@ -79,6 +78,7 @@ public class MenuPrincipal extends Activity {
 
                 miHorario.close();
                 misAmigos.close();
+                db.close();
 
 
 
