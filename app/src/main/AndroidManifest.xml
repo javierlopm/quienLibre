@@ -38,8 +38,9 @@
         <activity
             android:name=".VisualizarQuienLibre"
             android:label="@string/title_activity_visualizar_quien_libre"
+            android:configChanges="orientation"
             android:parentActivityName=".MenuPrincipal"
-            android:screenOrientation="landscape" >
+        >
         </activity>
         <activity
             android:name=".AgregarTablaHorario"
