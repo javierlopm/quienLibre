@@ -9,11 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by javierlopm on 08/04/15.
  */
 public class ModeloHorario extends SQLiteOpenHelper {
-    public static final int COLUMNA_TRIMESTRE = 1;
-    public static final int COLUMNA_ANIO      = 2;
-    public static final int COLUMNA_NOMBRE    = 3;
-    public static final int COLUMNA_HORA      = 4;
-
 
     String stringCrear = "CREATE TABLE " +
             "horarios( "    +
@@ -27,7 +22,7 @@ public class ModeloHorario extends SQLiteOpenHelper {
     String stringBorralo = "DROP TABLE horarios;";
 
     ModeloHorario(Context context){
-        super(context,"quienlibre",null,6);
+        super(context,"quienlibre",null,9);
     }
 
     public void onCreate(SQLiteDatabase db){
@@ -38,6 +33,7 @@ public class ModeloHorario extends SQLiteOpenHelper {
         db.execSQL(stringBorralo);
         db.execSQL(stringCrear);
     }
+
 
     public void agregarClase(String trim, int anio, String nombre, String dia, int hora){
         ContentValues cv = new ContentValues();

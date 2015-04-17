@@ -2,14 +2,9 @@ package net.ddns.javierlopm.quienlibre;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.File;
@@ -83,7 +78,7 @@ public class AgregarTablaHorario extends Activity {
         for (int i=0;i<4;i++) {
             for (int j = 0; j < 5; j++) {
                 for (int k = 0; k <= 1; k++) {
-                    if(ocupado[i][j][k]){
+                    if(!ocupado[i][j][k]){
                         //Fila y posicion(arriba abajo) definen la hora
                         db.agregarClase(trimestre,anio,nombre,intADia(j),(i*2) + 1 +k);
 
@@ -102,15 +97,15 @@ public class AgregarTablaHorario extends Activity {
     public String intADia(int a){
         String dia;
         switch (a) {
-            case 0:  dia = "Lunes";
+            case 0:  dia = "lunes";
                 break;
-            case 1:  dia = "Martes";
+            case 1:  dia = "martes";
                 break;
-            case 2:  dia = "Miércoles";
+            case 2:  dia = "miércoles";
                 break;
-            case 3:  dia = "Jueves";
+            case 3:  dia = "jueves";
                 break;
-            case 4:  dia = "Viernes";
+            case 4:  dia = "viernes";
                 break;
             default: dia = "invalido";
                 break;

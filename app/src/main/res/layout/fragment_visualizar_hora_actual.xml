@@ -21,17 +21,25 @@
         android:text="Es hora "
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:id="@+id/esHora"
+        android:id="@+id/textoRandom"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/esHora"
+        android:layout_toRightOf="@id/textoRandom"
         android:textSize="30sp"
         android:text="1"
-        />
+        android:id="@+id/esHora" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spLibres"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="51dp" />
 
 
 </RelativeLayout>
