@@ -125,11 +125,11 @@ public class VisualizarHoraActual extends Fragment {
         Log.w("Visualizar hora",Integer.toString(hora));
 
         if(res.moveToFirst()){
-            while(!res.isLast()){
+            do{
                 personas.add(res.getString(columna));
                 Log.w("VisualizarHora", "Agregando a la lista a " + res.getString(columna));
-                res.moveToNext();
-            }
+                if(!res.isLast()) res.moveToNext();
+            }while(!res.isLast());
         }
 
 

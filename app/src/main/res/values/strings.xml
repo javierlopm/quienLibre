@@ -21,6 +21,13 @@
         <item>Jueves</item>
         <item>Viernes</item>
     </string-array>
+
+    <string-array name="tiposConsultas">
+        <item>Horarios con alguien libre</item>
+        <item>Comparar horas Libres</item>
+    </string-array>
+
+
     <string name="title_activity_adicion_horario">AdicionHorario</string>
     <string name="title_activity_visualizar_quien_libre">VisualizarQuienLibre</string>
     <string name="title_activity_agregar_tabla_horario">AgregarTablaHorario</string>
