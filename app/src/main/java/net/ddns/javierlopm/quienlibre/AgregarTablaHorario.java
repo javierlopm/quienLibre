@@ -15,13 +15,14 @@ import java.util.Scanner;
 public class AgregarTablaHorario extends Activity {
 
     Boolean [][][] ocupado;
-    int [][][] idBotones;
-    String nombre;
-    File archivoTrimestre;
-    String trimestre;
-    int anio;
-    String buffer;
+    int     [][][] idBotones;
     String[] tokens;
+    String  nombre;             //Nombre de la persona a agregar, obtenido del activity anterior
+    File    archivoTrimestre;   //Archivo de donde se leera anio/trimestre
+    String  trimestre;          //Trimestre del horario a agregar
+    int     anio;               //Analogo a trimestre
+    String buffer;              //String auxiliar para lectura
+
 
 
     @Override

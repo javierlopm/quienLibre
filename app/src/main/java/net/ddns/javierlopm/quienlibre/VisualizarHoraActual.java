@@ -40,11 +40,7 @@ public class VisualizarHoraActual extends Fragment {
         if(getActivity() == null) Log.w("Visualizar Actual", "hey... actividad null");
 
         Spinner sp = (Spinner) view.findViewById(R.id.spLibres);
-
-
         ArrayAdapter<String> personas = libres(getActivity(),obtenerHora());
-
-
         sp.setAdapter(personas);
 
 

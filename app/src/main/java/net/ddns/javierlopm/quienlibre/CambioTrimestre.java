@@ -1,24 +1,20 @@
 package net.ddns.javierlopm.quienlibre;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.Calendar;
 
 
@@ -45,7 +41,6 @@ public class CambioTrimestre extends Activity implements AdapterView.OnItemSelec
 
         //Selector de anio
         anioSeleccionado = Calendar.getInstance().get(Calendar.YEAR);
-
         NumberPicker pickAYear = (NumberPicker) findViewById(R.id.anioActual);
         pickAYear.setMinValue(2011);
         pickAYear.setMaxValue(2050); //Why not?
@@ -80,7 +75,11 @@ public class CambioTrimestre extends Activity implements AdapterView.OnItemSelec
             bw.write(spinner.getSelectedItem().toString());
             bw.close();
 
-            Toast toast = Toast.makeText(getApplicationContext(), "Se guardo marico!", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(
+                            getApplicationContext(),
+                            "El trimestre se guardo satisfactoriamente!",
+                            Toast.LENGTH_LONG
+            );
             toast.show();
 
         } catch (IOException e) {
