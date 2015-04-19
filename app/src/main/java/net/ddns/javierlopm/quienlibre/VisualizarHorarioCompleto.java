@@ -17,16 +17,17 @@ public class VisualizarHorarioCompleto extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
+
+        //Inicializacion de
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         View v = inflater.inflate(R.layout.activity_agregar_tabla_horario,container,false);
-
         v.findViewById(R.id.send).setVisibility(View.GONE);
         v.findViewById(R.id.spSeleccionarConsulta).setVisibility(View.VISIBLE);
-
         final View este = v;    //Debia ser final... vainas de android
 
-        Spinner sp = (Spinner) v.findViewById(R.id.spSeleccionarConsulta);
+        Spinner sp  = (Spinner) v.findViewById(R.id.spSeleccionarConsulta);
+        final MultiSelectSpinner per = (MultiSelectSpinner) v.findViewById(R.id.spConsultarPersonas);
+
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(
@@ -35,11 +36,16 @@ public class VisualizarHorarioCompleto extends Fragment {
                                         int position,
                                         long id) {
 
-                if(position==0) actTodoLibres(este); //Deberia agregar funcionalidad a los botones aqui
+                if(position==0){
+                    actTodoLibres(este); //Deberia agregar funcionalidad a los botones aqui
+                    per.setVisibility(View.INVISIBLE);
+                }
                 else{
                     Horario h = new Horario(este);
                     h.actualizarBotones();
                     //Codigo aqui... ahora debe crearse el spinner de seleccion multiple
+                    per.setVisibility(View.VISIBLE);
+                    per.llenarDeAmigos(este.getContext(),h.obtenerAnio(),h.obtenerTrimestre());
                 }
             }
 

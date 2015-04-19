@@ -490,6 +490,17 @@
         android:entries="@array/tiposConsultas"
         />
 
+    <net.ddns.javierlopm.quienlibre.MultiSelectSpinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spConsultarPersonas"
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/spSeleccionarConsulta"
+        android:layout_toRightOf="@+id/spSeleccionarConsulta"
+        android:minWidth="100sp"
+        android:layout_marginLeft="30sp"
+        />
+
 
 
 </RelativeLayout>

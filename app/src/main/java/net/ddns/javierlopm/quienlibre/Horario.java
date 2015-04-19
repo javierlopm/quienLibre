@@ -24,6 +24,8 @@ public class Horario {
     private Boolean[][][] libre;      //Arreglo para consultas y almacenamientos de horas libres
     private int[][][]       bot;      //Arreglo con los id de los botones usados en agregarTabla.xml
     View view;
+    String trimestre;
+    int anio;
 
     public Horario(View v){
         libre = new Boolean[4][5][2];
@@ -31,6 +33,32 @@ public class Horario {
         inicializarBotones();
         inicializarLibres();
         view = v;
+
+
+        String[] tokens;
+        String buffer;
+
+        File archivoTrimestre = new File(v.getContext().getFilesDir(),"trimestreActual");
+
+        try{
+            Scanner lector = new Scanner(archivoTrimestre);
+            buffer = lector.nextLine();
+            tokens = buffer.split(" ");
+
+            trimestre = tokens[1];
+            anio = Integer.parseInt(tokens[0]);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String obtenerTrimestre(){
+        return trimestre;
+    }
+
+    public int obtenerAnio(){
+        return anio;
     }
 
     public void agregarHora(int hora,String dia){
@@ -87,23 +115,10 @@ public class Horario {
 
         inicializarLibres();
 
-        String[] tokens;
-        String buffer;
         String[] arg = new String[2];
 
-        File archivoTrimestre = new File(c.getFilesDir(),"trimestreActual");
-
-        try{
-            Scanner lector = new Scanner(archivoTrimestre);
-            buffer = lector.nextLine();
-            tokens = buffer.split(" ");
-
-            arg[0] = tokens[1];
-            arg[1] = tokens[0];
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        arg[0] = trimestre;
+        arg[1] = Integer.toString(anio);
 
         ModeloHorario db = new ModeloHorario(c);            //todo mover consulta a ModeloHorario
         SQLiteDatabase sql = db.getReadableDatabase();
