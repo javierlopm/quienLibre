@@ -19,47 +19,19 @@ public class ModeloHorario extends SQLiteOpenHelper {
             "hora NUMERIC(2), "        +
             "PRIMARY KEY(trimestre,anio,nombre,dia,hora));";
 
-    String crearDominio = "CREATE TABLE " +
-            "dominio( "    +
-            "dia VARCHAR(10), "        +
-            "hora NUMERIC(2), "        +
-            "PRIMARY KEY(dia,hora));";
-
-    String stringBorralo = "DROP TABLE horarios; DROP TABLE dominio;";
+    String stringBorralo = "DROP TABLE horarios;";
 
     ModeloHorario(Context context){
-        super(context,"quienlibre",null,11);
+        super(context,"quienlibre",null,12);
     }
 
     public void onCreate(SQLiteDatabase db){
         db.execSQL(stringCrear);
-//        db.execSQL(crearDominio);
-//
-//        String[] dias = {"lunes","martes","miércoles","jueves","viernes"};
-//
-//        for(int i=1;i<9;i++){
-//            for(String j : dias){
-//                agregarDominio(i,j);
-//            }
-//        }
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-//        db.execSQL(stringBorralo);
-
+        db.execSQL(stringBorralo);
         db.execSQL(stringCrear);
-//
-//        db.execSQL(crearDominio);
-//
-//        String[] dias = {"lunes","martes","miércoles","jueves","viernes"};
-//
-//        for(int i=1;i<9;i++){
-//            for(String j : dias){
-//                agregarDominio(i,j);
-//            }
-//        }
-
-
     }
 
 
@@ -74,15 +46,4 @@ public class ModeloHorario extends SQLiteOpenHelper {
         db.insert("horarios",null,cv);
         db.close();
     }
-    public void agregarDominio(int hora, String dia){
-        ContentValues cv = new ContentValues();
-        cv.put("dia",dia);
-        cv.put("hora",hora);
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.insert("dominio",null,cv);
-        db.close();
-    }
-
-
-
 }
