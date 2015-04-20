@@ -235,16 +235,15 @@ public class MultiSelectSpinner extends Spinner implements OnMultiChoiceClickLis
             amigos = new ArrayList<String>();
 
             do {
-
                 amigos.add(cAmigos.getString(cAmigos.getColumnIndex("nombre")));
-                if(!cAmigos.isLast()) cAmigos.moveToNext();
-
-            } while(!cAmigos.isLast());
+            } while(cAmigos.moveToNext());
 
         } else {
             amigos = null;
         }
 
+        cAmigos.close();
+        db.close();
 
         this.setItems(amigos);
     }
