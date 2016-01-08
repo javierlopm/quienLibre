@@ -2,16 +2,9 @@ package net.ddns.javierlopm.quienlibre;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
-import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Toast;
 
 import java.io.File;
@@ -20,6 +13,7 @@ import java.util.Scanner;
 
 
 public class MenuPrincipal extends Activity {
+    public final String mainTag = "MainActivity";
 
     Boolean trimestreSeleccionado = false;
     Boolean tengoHorario          = false;
@@ -35,13 +29,17 @@ public class MenuPrincipal extends Activity {
         setContentView(R.layout.activity_menu_principal);
 
         //archivoTrimestre.delete(); //Util en caso de reinicio en formato del archivo
-        actualizarVariables();
-
+        //actualizarVariables();
+        ModeloHorario md = new ModeloHorario(this);
+        if (! md.hayHorario()) md.poblar();
+        md.hayHorario();
+        BloquePropio bp = new BloquePropio();
+        Log.v(mainTag,bp.minToString());
     }
 
     public void actualizarVariables(){
         archivoTrimestre = new File(getApplicationContext().getFilesDir(),"trimestreActual");
-        //archivoTrimestre.delete();
+        archivoTrimestre.delete();
         trimestreSeleccionado = archivoTrimestre.exists();
 
         String buffer;
@@ -59,33 +57,33 @@ public class MenuPrincipal extends Activity {
                 trimestre = tokens[1];
 
                 //Consulta para ver si tengo amigos :D y un horario
-                ModeloHorario modeloHorario = new ModeloHorario(this);
-                SQLiteDatabase db = modeloHorario.getReadableDatabase();
+//                ModeloHorario modeloHorario = new ModeloHorario(this);
+//                SQLiteDatabase db = modeloHorario.getReadableDatabase();
 
                 String[] argumentos = new String[3];
                 argumentos[0] = trimestre;
                 argumentos[1] = Integer.toString(anio);
                 argumentos[2] = "me";
 
-                tengoAmigos = DatabaseUtils.longForQuery(
-                                    db,
-                                    "SELECT COUNT(*) " +
-                                            "FROM horarios " +
-                                                "WHERE trimestre=? AND " +
-                                                "anio=? AND " +
-                                                "nombre!=?",
-                                    argumentos) > 0L;
+//                tengoAmigos = DatabaseUtils.longForQuery(
+//                                    db,
+//                                    "SELECT COUNT(*) " +
+//                                            "FROM horarios " +
+//                                                "WHERE trimestre=? AND " +
+//                                                "anio=? AND " +
+//                                                "nombre!=?",
+//                                    argumentos) > 0L;
+//
+//                tengoHorario = DatabaseUtils.longForQuery(
+//                                    db,
+//                                    "SELECT COUNT(*) " +
+//                                            "FROM horarios " +
+//                                            "WHERE trimestre=? AND " +
+//                                            "anio=? AND " +
+//                                            "nombre=?",
+//                                    argumentos) > 0L;
 
-                tengoHorario = DatabaseUtils.longForQuery(
-                                    db,
-                                    "SELECT COUNT(*) " +
-                                            "FROM horarios " +
-                                            "WHERE trimestre=? AND " +
-                                            "anio=? AND " +
-                                            "nombre=?",
-                                    argumentos) > 0L;
-
-                db.close();
+//                db.close();
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -102,7 +100,7 @@ public class MenuPrincipal extends Activity {
     @Override
     public void onResume(){
         super.onResume();
-        actualizarVariables();
+//        actualizarVariables();
     }
 
 
