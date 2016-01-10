@@ -22,7 +22,7 @@ public class BloquePropio implements Comparable<BloquePropio> {
         int hora = c.get(Calendar.HOUR_OF_DAY);
         int minutos = c.get(Calendar.MINUTE);
         int h;
-        if      (hora <=  7 && minutos <= 30) h = -1;
+        if      (hora <=  7 && minutos <= 30) h = 0;
         else if (estaEnBloque(7 ,hora, minutos)) h = 1;
         else if (estaEnBloque(8 ,hora,minutos)) h = 2;
         else if (estaEnBloque(9 ,hora,minutos)) h = 3;
@@ -57,6 +57,10 @@ public class BloquePropio implements Comparable<BloquePropio> {
     BloquePropio(Integer hora, Dias dia){
         this.hora     = hora;
         this.dia      = dia;
+    }
+
+    BloquePropio(Context c){
+        mh = new ModeloHorario(c);
     }
 
     BloquePropio(Cursor c){
@@ -108,5 +112,16 @@ public class BloquePropio implements Comparable<BloquePropio> {
     static private boolean estaEnBloque(Integer h,Integer hComp,Integer min){
         return  (h  == hComp && min > 30) || (hComp == (h+1) && min <= 30);
     }
+
+    public void siguienteHora(){
+        if (hora==9){
+            hora = 1;
+            dia = dia.siguiente();
+        } else {
+            hora = hora+1;
+        }
+    }
+
+
 
 }

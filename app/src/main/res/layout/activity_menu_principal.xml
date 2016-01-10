@@ -37,29 +37,38 @@
         android:textColor="@color/md_black_1000"
         android:layout_marginTop="34dp"
         android:id="@+id/tituloClase"
+        android:visibility="invisible"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Aula 110"
         android:textSize="40dp"
         android:textColor="@color/md_black_1000"
         android:layout_marginTop="5dp"
-        android:id="@+id/proximaClase"
+        android:id="@+id/salon"
         android:layout_below="@+id/tituloClase"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lunes hora 3"
         android:textSize="35dp"
         android:textColor="@color/md_black_1000"
         android:layout_marginTop="5dp"
         android:id="@+id/hora"
-        android:layout_below="@+id/proximaClase"
+        android:layout_below="@+id/salon"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:textColor="@color/md_black_1000"
+        android:layout_marginTop="5dp"
+        android:id="@+id/asignatura"
+        android:layout_below="@+id/hora"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -67,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/hora"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="100dp"
         android:text="Buscar Disponibles"
         android:id="@+id/botDisp"
         android:onClick="verDisp"

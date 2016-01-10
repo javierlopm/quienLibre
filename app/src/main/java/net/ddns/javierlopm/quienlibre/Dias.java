@@ -29,4 +29,10 @@ public enum Dias {
         }
         return Lunes; // Fucking java
     }
+
+    public Dias siguiente(){
+        return values()[ (this.ordinal()+1) % values().length ];
+    }
+
+
 }
