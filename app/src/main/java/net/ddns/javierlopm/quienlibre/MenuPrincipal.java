@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
-
 
 
 
@@ -18,24 +16,27 @@ import java.io.File;
 public class MenuPrincipal extends Activity {
     public final String mainTag = "MainActivity";
 
-    Boolean trimestreSeleccionado = false;
-    Boolean tengoHorario          = false;
-    Boolean tengoAmigos           = false; // Forever alone var
-    File archivoTrimestre;
-    String trimestre;
-    int anio;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
 
+        actualizarTextos();
+
+
+    }
+
+
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        actualizarTextos();
+    }
+
+    public void actualizarTextos(){
         ModeloHorario md = new ModeloHorario(this);
-        if (! md.hayHorario()){
-            HorarioParser hp = new HorarioParser(this);
-            hp.agregarHorario();
-        }
 
         if (md.hayHorario()){
             BloquePropio proximaClase = md.proximoBloque();
@@ -48,21 +49,14 @@ public class MenuPrincipal extends Activity {
             texto = (TextView)findViewById(R.id.tituloClase);
             texto.setVisibility(View.VISIBLE);
         } else {
+
+            (findViewById(R.id.hora)).setVisibility(View.INVISIBLE);
+            (findViewById(R.id.asignatura)).setVisibility(View.INVISIBLE);
+            (findViewById(R.id.tituloClase)).setVisibility(View.INVISIBLE);
             ((TextView)findViewById(R.id.salon)).setText("Agrega tu horario");
 
         }
-
-
-
     }
-
-
-
-    @Override
-    public void onResume(){
-        super.onResume();
-    }
-
 
     public void enviarMensaje(String mensaje){
         Toast toast = Toast.makeText(
@@ -78,6 +72,18 @@ public class MenuPrincipal extends Activity {
         startActivity(intent);
 
     }
+
+    public void borrarDatos(View view){
+        ModeloHorario md = new ModeloHorario(this);
+        md.limpiarTablas();
+        actualizarTextos();
+    }
+
+    public void agregarComprobante(View view){
+        Intent intent = new Intent(this, AgregarComprobante.class);
+        startActivity(intent);
+    }
+
     public void agregarPersona(View view){
         Intent intent = new Intent(this, AdicionHorario.class);
         startActivity(intent);
@@ -86,24 +92,7 @@ public class MenuPrincipal extends Activity {
         //actualizarVariables();
         ModeloHorario md = new ModeloHorario(this);
         md.limpiarTablas();
-//        if (trimestreSeleccionado && tengoHorario && tengoAmigos){
-//            //Si to_do marcha bien mostrar horario con disponibilidad de amigos
-//            Intent intent = new Intent(this, VisualizarQuienLibre.class);
-//            startActivity(intent);
-//
-//        }
-//        else if(!trimestreSeleccionado){
-//            enviarMensaje("Parece que no has seleccionado un trimestre! Qué esperas?");
-//        }
-//        else if(trimestreSeleccionado && !tengoHorario){
-//            enviarMensaje("Parece que has olvidado agrega tu horario este trimestre");
-//        }
-//        else if(trimestreSeleccionado && tengoHorario && !tengoAmigos){
-//            enviarMensaje("Parece que no tienes el horario de nadie mas este trimestre :(");
-//        }
-//        else {
-//            enviarMensaje("Sinceramente no se que hago aqui");
-//        }
+
 
     }
 

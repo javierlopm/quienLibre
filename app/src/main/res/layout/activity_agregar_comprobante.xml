@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.ddns.javierlopm.quienlibre.AgregarComprobante">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cromo"
+        android:alpha="0.5"
+        android:id="@+id/cromo2" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignTop="@+id/usbid"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+
+
+        android:background="@color/md_white_1000"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="USB ID"
+        android:id="@+id/usbid"
+        android:layout_marginLeft="68dp"
+        android:layout_marginStart="68dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="216dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Clave"
+        android:id="@+id/clave"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/usbid"
+        android:layout_alignLeft="@+id/usbid"
+        />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/stringUsbId"
+        android:layout_alignBottom="@+id/usbid"
+        android:layout_toRightOf="@+id/usbid"
+        android:layout_marginLeft="15dp"
+
+        />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/stringPassword"
+        android:layout_alignBottom="@+id/clave"
+        android:layout_alignLeft="@+id/stringUsbId"
+         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar Horario"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:onClick="conectarDace"
+        />
+</RelativeLayout>

@@ -98,14 +98,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/botPer"
-        android:text="Cambiar Trimestre"
+        android:text="Borrar trimestre"
         android:id="@+id/botCam"
-        android:onClick="cambTrim"
+        android:onClick="borrarDatos"
         android:textAllCaps="false"
         android:layout_alignLeft="@+id/botPer"
         android:layout_alignStart="@+id/botPer"
         android:layout_alignRight="@+id/botPer"
         android:layout_alignEnd="@+id/botPer" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/botCam"
+        android:text="Agregar comprobante"
+        android:id="@+id/agregarComprobante"
+        android:onClick="agregarComprobante"
+        android:textAllCaps="false"
+        android:layout_alignLeft="@+id/botCam"
+        android:layout_alignStart="@+id/botCam"
+        android:layout_alignRight="@+id/botCam"
+        android:layout_alignEnd="@+id/botCam" />
 
 
 

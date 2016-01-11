@@ -36,16 +36,25 @@ import javax.net.ssl.X509TrustManager;
 public class HorarioParser {
     Element tabla;
     Context c;
+    String usbid;
+    String clave;
 
     public final String logTag = "HorarioParser";
 
-    HorarioParser(Context cc){
+    HorarioParser(Context cc, String usbid, String clave){
         c = cc;
+        this.clave = clave;
+        this.usbid = usbid;
     }
 
-    public void agregarHorario(){
-        tabla = descargarHorario("",""); // LLeva usuario y password
-        extraerBloques();
+    public boolean agregarHorario(){
+        try{
+            tabla = descargarHorario(); // LLeva usuario y password
+            extraerBloques();
+            return true;
+        } catch (Exception e){
+            return false;
+        }
     }
 
     private void extraerBloques(){
@@ -151,7 +160,7 @@ public class HorarioParser {
         return s;
     }
 
-    private Element descargarHorario(String username, String password){
+    private Element descargarHorario(){
 
         Element el = null;
 
@@ -216,8 +225,8 @@ public class HorarioParser {
                 conn.setRequestMethod("POST");
 
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-                nameValuePairs.add(new BasicNameValuePair("username", username));
-                nameValuePairs.add(new BasicNameValuePair("password", password));
+                nameValuePairs.add(new BasicNameValuePair("username", usbid));
+                nameValuePairs.add(new BasicNameValuePair("password", clave));
                 nameValuePairs.add(new BasicNameValuePair("warn", "true"));
                 nameValuePairs.add(new BasicNameValuePair("lt", pagina.getElementsByTag("input").get(3).val()));
                 nameValuePairs.add(new BasicNameValuePair("_eventId", "submit"));
